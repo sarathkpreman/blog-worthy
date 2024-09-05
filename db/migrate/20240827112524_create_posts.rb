@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.integer :upvotes, default: 0, null: false
       t.integer :downvotes, default: 0, null: false
       t.boolean :is_blog_worthy, default: false
-      
+
       t.timestamps
     end
   end
