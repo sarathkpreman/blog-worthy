@@ -33,6 +33,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# For compiling and bundling JavaScript. Read more: https://github.com/shakacode/shakapacker
+gem "shakapacker", "~> 6.6.0"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
