@@ -13,6 +13,12 @@ class Post < ApplicationRecord
 
   validate :check_downvotes_greater_or_not, :check_votes_negative_or_not, :check_netvotes_negative_or_not
 
+  validates :slug, uniqueness: true
+
+  validate :slug_not_changed
+
+  before_create :set_slug
+
   private
 
     def netvote
@@ -33,6 +39,23 @@ class Post < ApplicationRecord
     def check_downvotes_greater_or_not
       if downvotes > upvotes
         errors.add(:downvotes, "cannot be more than upvotes")
+      end
+    end
+
+    def set_slug
+      itr = 1
+      loop do
+        title_slug = title.parameterize
+        slug_candidate = itr > 1 ? "#{title_slug}-#{itr}" : title_slug
+        break self.slug = slug_candidate unless Post.exists?(slug: slug_candidate)
+
+        itr += 1
+      end
+    end
+
+    def slug_not_changed
+      if slug_changed? && self.persisted?
+        errors.add(:slug, I18n.t("post.slug.immutable"))
       end
     end
 end

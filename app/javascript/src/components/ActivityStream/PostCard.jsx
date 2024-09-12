@@ -17,7 +17,7 @@ const PostCard = ({ title, description, upvotes, downvotes }) => (
         </button>
         {/* Downvote Button */}
         <button className="flex items-center space-x-2">
-          <i className="ri-thumb-down-line" />
+          <i className="ri-thumb-down-fill" />
           <span>{downvotes}</span>
         </button>
         {/* Comment section */}
