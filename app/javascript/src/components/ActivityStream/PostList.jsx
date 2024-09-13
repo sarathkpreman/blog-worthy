@@ -1,50 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
 
 import PostCard from "./PostCard";
 
-const PostsList = () => {
+const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get("/posts");
-        // Extract posts from response
-        setPosts(response.data.posts);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+  const fetchPosts = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("/posts");
+      setPosts(response.data.posts);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+      if (onRefreshComplete) {
+        onRefreshComplete();
       }
-    };
+    }
+  }, [onRefreshComplete]);
 
+  useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts, shouldRefresh]);
 
   if (loading) return <div>Loading...</div>;
 
   if (error) return <div>Error loading posts: {error.message}</div>;
 
   return (
-    <div className="p-8">
-      <div className="mb-6·text-center">
-        <h1 className="text-3xl font-bold text-blue-500" />
-      </div>
-      <div className="gap-6·sm:grid-cols-2·md:grid-cols-3·grid·grid-cols-1">
-        {posts.map(post => (
+    <div className="flex flex-col items-center space-y-6 p-8">
+      {posts.map(post => (
+        <div className="flex w-full max-w-lg justify-center" key={post.id}>
           <PostCard
             description={post.description}
             downvotes={post.downvotes}
-            key={post.id}
             title={post.title}
             upvotes={post.upvotes}
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

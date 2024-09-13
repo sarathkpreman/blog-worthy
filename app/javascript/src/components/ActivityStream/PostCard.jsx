@@ -1,27 +1,22 @@
 import React from "react";
 
 const PostCard = ({ title, description, upvotes, downvotes }) => (
-  <div className="mx-auto mb-8 max-w-4xl overflow-hidden rounded-lg bg-white shadow-lg">
-    <div className="p-8">
-      <h2 className="mb-4 text-4xl font-bold text-blue-500">{title}</h2>
-      <p className="description-text text-lg text-gray-700">{description}</p>
+  <div className="mb-6 flex w-full max-w-xl flex-col overflow-hidden rounded-lg border border-gray-300 bg-white">
+    <div className="flex-grow p-6">
+      <h2 className="mb-2 text-xl font-semibold text-blue-600">{title}</h2>
+      <p className="description-text text-sm text-gray-700">{description}</p>
     </div>
-    <hr className="breaker" />
-    <div className="flex items-center justify-between  bg-gray-100 px-8 py-4">
-      {/* Actions Container */}
-      <div className="flex items-center space-x-4">
-        {/* Upvote Button */}
-        <button className="flex items-center space-x-2">
+    <div className="flex items-center justify-between bg-gray-100 px-6 py-3">
+      <div className="flex space-x-4">
+        <button className="flex items-center space-x-2 text-blue-600">
           <i className="ri-thumb-up-line" />
           <span>{upvotes}</span>
         </button>
-        {/* Downvote Button */}
-        <button className="flex items-center space-x-2">
-          <i className="ri-thumb-down-fill" />
+        <button className="flex items-center space-x-2 text-red-600">
+          <i className="ri-thumb-down-line" />
           <span>{downvotes}</span>
         </button>
-        {/* Comment section */}
-        <button className="flex items-center space-x-2">
+        <button className="flex items-center space-x-2 text-gray-600">
           <i className="ri-chat-4-line" />
         </button>
       </div>

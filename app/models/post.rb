@@ -9,17 +9,21 @@ class Post < ApplicationRecord
 
   validates :downvotes, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  validates_inclusion_of :is_blog_worthy, in: [true, false]
+  # validates_inclusion_of :is_blog_worthy, in: [true, false]
 
-  validate :check_downvotes_greater_or_not, :check_votes_negative_or_not, :check_netvotes_negative_or_not
+  # validate :check_downvotes_greater_or_not, :check_votes_negative_or_not, :check_netvotes_negative_or_not
 
-  validates :slug, uniqueness: true
+  # validates :slug, uniqueness: true
 
-  validate :slug_not_changed
+  # validate :slug_not_changed
 
-  before_create :set_slug
+  before_create :generate_unique_id, :set_slug
 
   private
+
+    def generate_unique_id
+      self.id = SecureRandom.uuid
+    end
 
     def netvote
       upvotes - downvotes

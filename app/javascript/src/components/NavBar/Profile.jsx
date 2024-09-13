@@ -3,7 +3,7 @@ import React from "react";
 import { Avatar } from "@bigbinary/neetoui";
 
 const Profile = () => (
-  <div>
+  <div className="flex items-center gap-2">
     <Avatar
       size="medium"
       user={{
@@ -11,6 +11,7 @@ const Profile = () => (
       }}
       onClick={function noRefCheck() {}}
     />
+    <span>Sarath</span>
   </div>
 );
 
