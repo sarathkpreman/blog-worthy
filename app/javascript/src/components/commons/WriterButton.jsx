@@ -14,7 +14,7 @@ const WriterButton = ({ onSuccess }) => {
     <div className="flex justify-center">
       <button className="flex items-center" onClick={() => setIsPaneOpen(true)}>
         <i className="ri-quill-pen-fill mr-1 text-lg" />
-        <p className="text-sm">Create Post</p>
+        <p className="text-md">Inkspire</p>
       </button>
       {isPaneOpen && (
         <PaneForm

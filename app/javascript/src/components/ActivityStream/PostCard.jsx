@@ -1,9 +1,14 @@
 import React from "react";
 
-const PostCard = ({ title, description, upvotes, downvotes }) => (
-  <div className="mb-6 flex w-full max-w-xl flex-col overflow-hidden rounded-lg border border-gray-300 bg-white">
+const PostCard = ({ title, description, upvotes, downvotes, onClick }) => (
+  <div className="mb-6 flex w-full max-w-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-white">
     <div className="flex-grow p-6">
-      <h2 className="mb-2 text-xl font-semibold text-blue-600">{title}</h2>
+      <h2
+        className="mb-2 text-xl font-semibold text-blue-600"
+        onClick={onClick}
+      >
+        {title}
+      </h2>
       <p className="description-text text-sm text-gray-700">{description}</p>
     </div>
     <div className="flex items-center justify-between bg-gray-100 px-6 py-3">
