@@ -44,6 +44,8 @@ gem "pry-byebug"
 
 gem "rexml"
 
+gem "bcrypt", "~> 3.1.13"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

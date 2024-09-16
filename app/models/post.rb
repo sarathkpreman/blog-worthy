@@ -3,6 +3,8 @@
 class Post < ApplicationRecord
   MAX_TITLE_LENGTH = 125 unless defined?(MAX_TITLE_LENGTH)
 
+  belongs_to :user
+  belongs_to :organization
   validates :title, presence: true, length: { maximum: MAX_TITLE_LENGTH }
 
   validates :upvotes, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

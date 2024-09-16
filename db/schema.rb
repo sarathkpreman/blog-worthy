@@ -10,8 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_11_155149) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_16_131740) do
+  create_table "organizations", id: :string, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 # Could not dump table "posts" because of following StandardError
 #   Unknown type '' for column 'id'
 
+  create_table "users", id: :string, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.string "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_users_on_organization_id"
+  end
+
+  add_foreign_key "posts", "organizations"
+  add_foreign_key "posts", "users"
+  add_foreign_key "users", "organizations"
 end
