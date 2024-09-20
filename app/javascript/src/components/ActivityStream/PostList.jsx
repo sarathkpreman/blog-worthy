@@ -63,6 +63,7 @@ const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
             downvotes={post.downvotes}
             title={post.title}
             upvotes={post.upvotes}
+            userName={post.user.name}
             onClick={() => handlePostClick(post.slug)}
           />
         </div>
@@ -75,10 +76,10 @@ const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
           onClose={handleModalClose}
         >
           <div className="max-h-[80vh] overflow-y-auto p-6">
-            {" "}
-            <h2 className="mb-4 text-xl font-bold">
-              {selectedPost.title}
-            </h2>{" "}
+            <h1 className="mb-4 text-xl font-bold">{selectedPost.title}</h1>
+            <p className="mb-2 text-sm font-semibold text-black">
+              Author: {selectedPost.user.name}
+            </p>
             <p>{selectedPost.description}</p>
           </div>
           <div className="flex justify-end p-6">

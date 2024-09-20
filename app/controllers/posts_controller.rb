@@ -2,8 +2,8 @@
 
 class PostsController < ApplicationController
   def index
-    posts = Post.all
-    render status: :ok, json: { posts: }
+    posts = Post.includes(:user).all
+    render status: :ok, json: { posts: posts.as_json(include: { user: { only: :name } }) }
   end
 
   def create
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def show
     post = Post.find_by!(slug: params[:slug])
-    render_json({ post: })
+    render json: { post: post.as_json(include: { user: { only: :name } }) }
   end
 
   private
