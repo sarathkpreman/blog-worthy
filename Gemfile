@@ -46,6 +46,8 @@ gem "rexml"
 
 gem "bcrypt", "~> 3.1.13"
 
+gem "pundit"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -8,11 +8,8 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
-    if post.save
-      render json: { notice: "Post was successfully created", post: }, status: :created
-    else
-      render json: { error: post.errors.full_messages.to_sentence }, status: :unprocessable_entity
-    end
+    post.save!
+    render_notice(t("Successfully_created", entity: "Task"))
   end
 
   def show
