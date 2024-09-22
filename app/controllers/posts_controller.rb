@@ -2,14 +2,18 @@
 
 class PostsController < ApplicationController
   def index
-    posts = Post.includes(:user).all
+    posts = Post.where(user_id: current_user.id).includes(:user)
     render status: :ok, json: { posts: posts.as_json(include: { user: { only: :name } }) }
   end
 
   def create
-    post = Post.new(post_params)
-    post.save!
-    render_notice(t("Successfully_created", entity: "Task"))
+    post = current_user.posts.new(post_params)
+    post.organization_id = current_user.organization_id
+    if post.save
+      render_notice(t("Successfully_created", entity: "Post"))
+    else
+      render json: { error: post.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def show
