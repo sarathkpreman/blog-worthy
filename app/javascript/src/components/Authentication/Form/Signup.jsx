@@ -87,7 +87,7 @@ const Signup = ({
           </label>
           <select
             required
-            className="focus:outline-none mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="focus:outline-none block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             id="organization"
             name="organization"
             value={selectedOrganization}
