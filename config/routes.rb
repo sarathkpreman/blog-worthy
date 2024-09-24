@@ -1,6 +1,13 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+Rails.application.routes.draw do
+  constraints(lambda { |req| req.format == :json }) do
+    resources :posts, only: %i[index create show], param: :slug
+    resources :users, only: %i[index create]
+    resource :session, only: [:create, :destroy]
+  end
+  resources :organizations, only: [:index], defaults: { format: :json }
+
+  root "home#index"
+  get "*path", to: "home#index", via: :all
 end

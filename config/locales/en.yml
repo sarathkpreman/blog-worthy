@@ -28,6 +28,16 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  session:
+    could_not_auth: "Could not authenticate with the provided credentials."
+    incorrect_credentials: "Incorrect credentials, try again."
+
+  messages:                   # Added a namespace to group these keys
+    successfully_created: "%{entity} was successfully created!"
+    successfully_updated: "%{entity} was successfully updated!"
+
+  task:
+    slug:
+      immutable: "is immutable!"
+      generic_error: "Something went wrong. Please try again later."

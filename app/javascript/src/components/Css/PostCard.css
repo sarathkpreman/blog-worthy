@@ -1,0 +1,8 @@
+.description-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Adjust this number to control the number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #4a4a4a; /* Optional: Adjust text color if needed */
+}
