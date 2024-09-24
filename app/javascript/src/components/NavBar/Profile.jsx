@@ -7,17 +7,16 @@ import { resetAuthTokens } from "src/apis/axios";
 import authApi from "apis/auth";
 import { getFromLocalStorage, setToLocalStorage } from "utils/storage";
 
+const userName = getFromLocalStorage("authUserName");
+
 const Profile = () => {
-  const userName = getFromLocalStorage("authUserName");
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Toggle dropdown visibility when Avatar or Username is clicked
   const toggleDropdown = () => {
     setDropdownVisible(prevState => !prevState);
   };
 
-  // Close dropdown when clicked outside
   useEffect(() => {
     const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -59,22 +58,23 @@ const Profile = () => {
             imageUrl: "https://i.pravatar.cc/300",
           }}
         />
-        <span>{userName}</span>
+        <span className="font-cursive ml-1 text-sm font-bold text-gray-800">
+          {userName}
+        </span>
       </div>
       {dropdownVisible && (
-        <ul className="absolute right-0 mt-4 w-48 rounded-md border bg-black shadow-lg">
-          <li className="px-4 py-2 hover:bg-gray-600">
+        <ul className="w-47 absolute right-0 mt-6 rounded-md border bg-white shadow-md">
+          <li className="px-4 py-2 hover:bg-gray-100">
             <Link to="/account">Account</Link>
           </li>
-          <li className="px-4 py-2 hover:bg-gray-600">
+          <li className="px-4 py-2 hover:bg-gray-100">
             <Link to="/profile">Profile</Link>
           </li>
-          <li className="px-4 py-2 hover:bg-gray-600">
+          <li className="px-4 py-2 hover:bg-gray-100">
             <Link to="/settings">Settings</Link>
           </li>
-          <div className="my-1 h-px bg-gray-700" />
           <li
-            className="cursor-pointer px-4 py-2 hover:bg-gray-600"
+            className="cursor-pointer px-4 py-2 text-red-500 hover:bg-gray-100"
             onClick={handleLogout}
           >
             Logout

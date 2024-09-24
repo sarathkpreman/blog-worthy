@@ -21,7 +21,7 @@ const Home = () => {
       </div>
       <div className="mx-4 mt-20 flex flex-grow flex-col">
         <div className="flex flex-grow items-center justify-center p-5">
-          <div className="h-full w-full max-w-3xl">
+          <div className="h-full w-full max-w-7xl">
             <PostsList
               shouldRefresh={shouldRefreshPosts}
               onRefreshComplete={handleRefreshComplete}

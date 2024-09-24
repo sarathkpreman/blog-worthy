@@ -11,11 +11,19 @@ const WriterButton = ({ onSuccess }) => {
   };
 
   return (
-    <div className="flex justify-center">
-      <button className="flex items-center" onClick={() => setIsPaneOpen(true)}>
-        <i className="ri-quill-pen-fill mr-1 text-lg" />
-        <p className="text-md">Inkspire</p>
-      </button>
+    <div className="flex justify-center" style={{ color: "#484848" }}>
+      <div
+        className="rounded-full border p-3"
+        style={{ borderColor: "#767676" }}
+      >
+        <button
+          className="flex items-center"
+          onClick={() => setIsPaneOpen(true)}
+        >
+          <i className="ri-quill-pen-fill text-xl" />
+          <p className="text-lg">Inkdrop..</p>
+        </button>
+      </div>
       {isPaneOpen && (
         <PaneForm
           onClose={() => setIsPaneOpen(false)}

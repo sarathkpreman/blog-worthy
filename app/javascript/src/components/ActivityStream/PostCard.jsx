@@ -8,35 +8,54 @@ const PostCard = ({
   userName,
   onClick,
 }) => (
-  <div className="mb-6 flex w-full max-w-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-white">
-    <div className="flex-grow p-6">
+  <div className="flex h-[600px] w-full max-w-[350px] flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm">
+    <div className="flex-grow overflow-y-auto p-6">
       <h1
-        className="mb-2 text-xl font-semibold text-blue-600"
+        className="mb-2 cursor-pointer text-4xl font-semibold"
+        style={{ color: "#484848" }}
         onClick={onClick}
       >
         {title}
       </h1>
-      <div>
-        <p className="mb-1 text-sm font-semibold text-black">
-          Author: {userName}
-        </p>
-      </div>
-      <p className="description-text text-sm text-gray-700">{description}</p>
+      <p className="mb-2 text-sm font-semibold" style={{ color: "#484848" }}>
+        Author: {userName}
+      </p>
+      <p className="font-md text-sm" style={{ color: "#767676" }}>
+        {description.length > 100
+          ? `${description.substring(0, 150)}...`
+          : description}
+      </p>
     </div>
-    <div className="flex items-center justify-between bg-gray-100 px-6 py-3">
-      <div className="flex space-x-4">
-        <button className="flex items-center space-x-2 text-blue-600">
-          <i className="ri-thumb-up-line" />
+    <div className="flex items-center justify-between bg-gray-50 p-3 px-4 py-4">
+      <div className="flex items-center space-x-5">
+        <button
+          className="flex items-center space-x-2"
+          style={{ color: "#00A699" }}
+        >
+          <i className="ri-thumb-up-line text-lg" />
           <span>{upvotes}</span>
         </button>
-        <button className="flex items-center space-x-2 text-red-600">
-          <i className="ri-thumb-down-line" />
+        <button
+          className="flex items-center space-x-2"
+          style={{ color: "#FF5A5F" }}
+        >
+          <i className="ri-thumb-down-line text-lg" />
           <span>{downvotes}</span>
         </button>
-        <button className="flex items-center space-x-2 text-gray-600">
+        <button
+          className="flex items-center space-x-2"
+          style={{ color: "#484848" }}
+        >
           <i className="ri-chat-4-line" />
         </button>
       </div>
+      <button
+        className="flex items-center space-x-2"
+        style={{ color: "#484848" }}
+      >
+        <i className="ri-edit-box-fill text-lg" />
+        <span>Edit</span>
+      </button>
     </div>
   </div>
 );

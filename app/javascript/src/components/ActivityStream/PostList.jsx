@@ -4,8 +4,11 @@ import { Modal } from "@bigbinary/neetoui";
 import axios from "axios";
 
 import postsApi from "apis/posts";
+import { getFromLocalStorage } from "utils/storage";
 
 import PostCard from "./PostCard";
+
+const userName = getFromLocalStorage("authUserName");
 
 const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
   const [posts, setPosts] = useState([]);
@@ -55,40 +58,56 @@ const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
   if (error) return <div>Error loading posts: {error.message}</div>;
 
   return (
-    <div className="flex flex-col items-center space-y-6 p-8">
-      {posts.map(post => (
-        <div className="flex w-full max-w-lg justify-center" key={post.id}>
+    <div className="flex justify-center p-8">
+      <div className="grid grid-cols-1 gap-8">
+        {posts.map(post => (
           <PostCard
             description={post.description}
             downvotes={post.downvotes}
+            key={post.id}
             title={post.title}
             upvotes={post.upvotes}
-            userName={post.user.name}
+            userName={userName}
             onClick={() => handlePostClick(post.slug)}
           />
-        </div>
-      ))}
-      {selectedPost && (
-        <Modal
-          isOpen={isModalOpen}
-          size="large"
-          title="Post Details"
-          onClose={handleModalClose}
-        >
-          <div className="max-h-[80vh] overflow-y-auto p-6">
-            <h1 className="mb-4 text-xl font-bold">{selectedPost.title}</h1>
-            <p className="mb-2 text-sm font-semibold text-black">
-              Author: {selectedPost.user.name}
-            </p>
-            <p>{selectedPost.description}</p>
-          </div>
-          <div className="flex justify-end p-6">
-            <button className="btn btn-secondary" onClick={handleModalClose}>
-              Close
-            </button>
-          </div>
-        </Modal>
-      )}
+        ))}
+        {selectedPost && (
+          <Modal
+            isOpen={isModalOpen}
+            size="large"
+            title="Post Details"
+            onClose={handleModalClose}
+          >
+            <div className="max-h-[80vh] overflow-y-auto p-6">
+              <h1
+                className="mb-2 text-4xl font-semibold"
+                style={{ color: "#484848" }}
+              >
+                {selectedPost.title}
+              </h1>
+              <p
+                className="mb-2 text-sm font-semibold"
+                style={{ color: "#484848" }}
+              >
+                Author: {selectedPost.user.name}
+              </p>
+              <p style={{ color: "#767676" }}>{selectedPost.description}</p>
+            </div>
+            <div className="flex justify-end space-x-2 p-6">
+              <button
+                className="btn btn-secondary flex items-center space-x-2"
+                onClick={handleModalClose}
+              >
+                <i
+                  className="ri-delete-bin-fill text-lg"
+                  style={{ color: "#484848" }}
+                />
+                <span>Delete</span>
+              </button>
+            </div>
+          </Modal>
+        )}
+      </div>
     </div>
   );
 };
