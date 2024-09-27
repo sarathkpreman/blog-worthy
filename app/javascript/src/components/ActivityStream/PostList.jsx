@@ -63,35 +63,39 @@ const PostsList = ({ shouldRefresh, onRefreshComplete }) => {
         {posts.map(post => (
           <PostCard
             description={post.description}
-            downvotes={post.downvotes}
+            initialDownvotes={post.downvotes}
+            initialIsBlogWorthy={post.is_blog_worthy}
+            initialUpvotes={post.upvotes}
             key={post.id}
+            postSlug={post.slug}
             title={post.title}
-            upvotes={post.upvotes}
             userName={userName}
             onClick={() => handlePostClick(post.slug)}
           />
         ))}
         {selectedPost && (
-          <Modal
-            isOpen={isModalOpen}
-            size="large"
-            title="Post Details"
-            onClose={handleModalClose}
-          >
+          <Modal isOpen={isModalOpen} size="large" onClose={handleModalClose}>
             <div className="max-h-[80vh] overflow-y-auto p-6">
               <h1
                 className="mb-2 text-4xl font-semibold"
-                style={{ color: "#484848" }}
+                style={{
+                  color: "#484848",
+                  wordwrap: "break-word",
+                  overflowWrap: "break-word",
+                  padding: "0.5rem",
+                }}
               >
                 {selectedPost.title}
               </h1>
               <p
-                className="mb-2 text-sm font-semibold"
-                style={{ color: "#484848" }}
+                className=" text-sm font-semibold"
+                style={{ color: "#484848", padding: "0.5rem" }}
               >
                 Author: {selectedPost.user.name}
               </p>
-              <p style={{ color: "#767676" }}>{selectedPost.description}</p>
+              <p style={{ color: "#767676", padding: "0.5rem" }}>
+                {selectedPost.description}
+              </p>
             </div>
             <div className="flex justify-end space-x-2 p-6">
               <button

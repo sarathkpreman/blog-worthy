@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
 import InkspireLogo from "./InkspireLogo";
+import NetvoteHeart from "./NetvoteHeart";
+import Notification from "./Notification";
 import Profile from "./Profile";
 
 import WriterButton from "../commons/WriterButton";
@@ -26,15 +28,17 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed z-10 w-full bg-white shadow-md">
-      <div className="container mx-auto flex items-center p-2">
-        <div className="flex items-center">
+    <nav className="fixed z-10 w-full bg-gray-50 shadow-md">
+      <div className="container mx-auto flex max-w-screen-xl items-center justify-between p-2">
+        <div className="flex items-center space-x-4">
           <InkspireLogo />
         </div>
-        <div className="flex flex-grow justify-center space-x-8">
+        <div className="flex justify-center">
           <WriterButton />
         </div>
-        <div className="relative flex items-center">
+        <div className="relative ml-4 flex items-center space-x-5">
+          <Notification />
+          <NetvoteHeart />
           <button className="flex items-center" onClick={toggleUserMenu}>
             <Profile />
           </button>
