@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
   constraints(lambda { |req| req.format == :json }) do
-    resources :posts, only: %i[index create show], param: :slug
+    resources :posts, only: %i[index create show], param: :slug do
+      member do
+        patch :update_votes
+      end
+    end
     resources :users, only: %i[index create]
     resource :session, only: [:create, :destroy]
   end

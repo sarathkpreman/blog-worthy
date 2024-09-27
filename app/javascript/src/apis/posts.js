@@ -9,6 +9,13 @@ const create = payload =>
     post: payload,
   });
 
-const postsApi = { fetch, show, create };
+const update_votes = (_slug, voteType, upvoteClicked, downvoteClicked) =>
+  axios.patch("/posts/${slug}/update_votes", {
+    vote_type: voteType,
+    upvote_clicked: upvoteClicked,
+    downvote_clicked: downvoteClicked,
+  });
+
+const postsApi = { fetch, show, create, update_votes };
 
 export default postsApi;
